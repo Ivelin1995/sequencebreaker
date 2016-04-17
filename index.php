@@ -16,13 +16,21 @@ if(!empty($_POST['input'])){
 }
 
 
+//2d array of sequences
+$arr = array();
 
-$arr = array(
-array(1,2,3,4),
-array(11,12,13,14),
-array(21,22,23,24)
-);
+//simulates a fetch of SELECT numbers FROM whateverDb. Should be changed.
+$stringSequence=array(
+	"1 2 3 4","11 12 13 14","21 22 23 24"
+	);
 
+//convert string to arrays and push them to the 2d array of sequences ($arr)
+for($i=0;$i<count($stringSequence);$i++){
+	$nums=explode(" ",$stringSequence[$i]);
+	array_push($arr,$nums);
+}
+
+//choose random array. range should be modified to fit the number of sequences we have
 $random = rand(0,2);
 
 $selectedArr= $arr[$random];
