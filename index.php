@@ -1,3 +1,11 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<head>
+<body>
+<img id="logo" src="logo.png"></img>
+
+
 <?php
 session_start();
 
@@ -53,11 +61,7 @@ $selectedArr= $arr[$random];
 
 ?>
 
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<head>
-<body>
+
 <div id="center1">
 <?php
 for($i=0;$i<count($selectedArr)-1;$i++){
