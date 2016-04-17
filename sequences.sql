@@ -1,8 +1,9 @@
-CREATE DATABASE sequencebreaker;
+CREATE DATABASE IF NOT EXISTS sequencebreaker;
 USE sequencebreaker;
-CREATE TABLE sequences (id INT PRIMARY KEY AUTO_INCREMENT, formula VARCHAR(128), numbers VARCHAR(128) NOT NULL, difficulty INT);
+DROP TABLE IF EXSTS sequences;
+CREATE TABLE IF NOT EXISTS sequences (id INT PRIMARY KEY AUTO_INCREMENT, formula VARCHAR(128), numbers VARCHAR(128) NOT NULL, difficulty INT);
 INSERT INTO sequences VALUES
-('1', 'Xn = (2/3)n', '2/3 4/3 2 8/3 10/3 12/3', '1'),
+('1', 'Xn = (2/3)n', '2/3 4/3 2 8/3 10/3 4', '1'),
 ('2', 'Xn = n^2 + 2', '3 6 11 18 27', '3'),
 ('3', 'Xn = 3n + 4','7 10 13 16 19', '1'),
 ('4', 'Xn = n^2 * -1', '-1 4 -9 16 -25', '2'),
