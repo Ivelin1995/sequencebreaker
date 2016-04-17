@@ -7,6 +7,7 @@
 
 
 <?php
+include 'config.php';
 session_start();
 
 if(!isset($_SESSION['points'])){
@@ -42,16 +43,29 @@ if(!empty($_POST['input'])){
 //2d array of sequences
 $arr = array();
 
-//simulates a fetch of SELECT numbers FROM whateverDb. Should be changed.
-$stringSequence=array(
-	"1 2 3 4 5","11 12 13 14 15","21 22 23 24 25"
-	);
 
-//convert string to arrays and push them to the 2d array of sequences ($arr)
-for($i=0;$i<count($stringSequence);$i++){
-	$nums=explode(" ",$stringSequence[$i]);
-	array_push($arr,$nums);
+$con = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);
+
+
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
+$query1="SELECT numbers from sequences";
+$result=mysqli_query($con,$query1);
+$column = array();
+
+while($row = mysqli_fetch_array($result)){
+	$nums=explode(" ",$row[0]);
+    array_push($arr,$nums);
+
 }
+
+
+
+
 
 //choose random array. range should be modified to fit the number of sequences we have
 $random = rand(0,2);
@@ -59,6 +73,7 @@ if(!$pass){
 	$random=$_POST['sequence'];
 }
 $selectedArr= $arr[$random];
+
 
 
 
