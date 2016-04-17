@@ -44,7 +44,7 @@ $arr = array();
 
 //simulates a fetch of SELECT numbers FROM whateverDb. Should be changed.
 $stringSequence=array(
-	"1 2 3 4","11 12 13 14","21 22 23 24"
+	"1 2 3 4 5","11 12 13 14 15","21 22 23 24 25"
 	);
 
 //convert string to arrays and push them to the 2d array of sequences ($arr)
@@ -64,7 +64,7 @@ $selectedArr= $arr[$random];
 
 <div id="center1">
 <?php
-for($i=0;$i<count($selectedArr)-1;$i++){
+for($i=0;$i<count($selectedArr)-2;$i++){
 	if($i!=0){
 		echo ", " . $selectedArr[$i];
 	}else{
@@ -79,7 +79,7 @@ for($i=0;$i<count($selectedArr)-1;$i++){
 	<form action="" method="post">
 	  <input type="text" name="input"><br>
 	  <input type="hidden" name="answer" value=<?php 
-		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-1].'"';?>>
+		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-2].'"';?>>
 	  <input type="submit" value="Submit" name="btn">
 	</form>
 <div>
