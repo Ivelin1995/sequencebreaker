@@ -7,10 +7,25 @@ if(!isset($_SESSION['points'])){
 
 if(!empty($_POST['input'])){
 	if($_POST['input']==$_POST['answer']){
-		echo "PASSED";
+		
+		echo "<div class=\"notify successbox\">
+        <h1>SUCCESS</h1>
+        <span class=\"alerticon\"><img src=\"http://s22.postimg.org/i5iji9hv1/check.png\" alt=\"checkmark\" /></span>
+        <p>Congratulations! You entered the correct number.</p>
+      </div>";
+
+
 		$_SESSION['points']+=5;
 	}else{
-		echo "FAILED";
+		
+
+		echo "<div class=\"notify errorbox\">
+		        <h1>FAIL</h1>
+		        <span class=\"alerticon\"><img src=\"http://s22.postimg.org/ulf9c0b71/error.png\" alt=\"error\" /></span>
+		        <p>You entered the wrong number in the sequence. Try again!</p>
+		      </div>";
+
+
 		$_SESSION['points']-=2;
 	}
 }
@@ -32,7 +47,6 @@ for($i=0;$i<count($stringSequence);$i++){
 
 //choose random array. range should be modified to fit the number of sequences we have
 $random = rand(0,2);
-
 $selectedArr= $arr[$random];
 
 
@@ -62,7 +76,7 @@ for($i=0;$i<count($selectedArr)-1;$i++){
 	  <input type="text" name="input"><br>
 	  <input type="hidden" name="answer" value=<?php 
 		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-1].'"';?>>
-	  <input type="submit" value="Submit">
+	  <input type="submit" value="Submit" name="btn">
 	</form>
 <div>
 <div id="topright">
