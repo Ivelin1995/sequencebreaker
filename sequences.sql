@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS sequencebreaker;
 USE sequencebreaker;
-DROP TABLE IF EXSTS sequences;
+DROP TABLE IF EXISTS sequences;
 CREATE TABLE IF NOT EXISTS sequences (id INT PRIMARY KEY AUTO_INCREMENT, formula VARCHAR(128), numbers VARCHAR(128) NOT NULL, difficulty INT);
 INSERT INTO sequences VALUES
 ('1', 'Xn = (2/3)n', '2/3 4/3 2 8/3 10/3 4', '1'),
