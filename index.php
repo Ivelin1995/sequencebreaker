@@ -12,7 +12,7 @@ session_start();
 if(!isset($_SESSION['points'])){
 	$_SESSION['points']=0;
 }
-
+$pass=true;
 if(!empty($_POST['input'])){
 	if($_POST['input']==$_POST['answer']){
 		
@@ -25,7 +25,7 @@ if(!empty($_POST['input'])){
 
 		$_SESSION['points']+=5;
 	}else{
-		
+		$pass=false;
 
 		echo "<div class=\"notify errorbox\">
 		        <h1>FAIL</h1>
@@ -55,6 +55,9 @@ for($i=0;$i<count($stringSequence);$i++){
 
 //choose random array. range should be modified to fit the number of sequences we have
 $random = rand(0,2);
+if(!$pass){
+	$random=$_POST['sequence'];
+}
 $selectedArr= $arr[$random];
 
 
@@ -64,14 +67,26 @@ $selectedArr= $arr[$random];
 
 <div id="center1">
 <?php
-for($i=0;$i<count($selectedArr)-2;$i++){
-	if($i!=0){
-		echo ", " . $selectedArr[$i];
-	}else{
-		echo $selectedArr[$i];
-	}
+if($pass){
+	for($i=0;$i<count($selectedArr)-2;$i++){
+		if($i!=0){
+			echo ", " . $selectedArr[$i];
+		}else{
+			echo $selectedArr[$i];
+		}
 	
+	}
+}else{
+	for($i=0;$i<count($selectedArr)-1;$i++){
+		if($i!=0){
+			echo ", " . $selectedArr[$i];
+		}else{
+			echo $selectedArr[$i];
+		}
+	
+	}
 }
+
 
 ?>
 <div>
@@ -79,7 +94,16 @@ for($i=0;$i<count($selectedArr)-2;$i++){
 	<form action="" method="post">
 	  <input type="text" name="input"><br>
 	  <input type="hidden" name="answer" value=<?php 
-		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-2].'"';?>>
+
+	  	if($pass){
+	  		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-2].'"';
+	  	}else{
+	  		echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-1].'"';
+	  	}
+		?>>
+		<input type="hidden" name="sequence" value=<?php 
+	  		echo '"'.$_POST['sequence']=$random.'"';
+		?>>
 	  <input type="submit" value="Submit" name="btn">
 	</form>
 <div>
