@@ -1,3 +1,27 @@
+<?php
+
+if(!empty($_POST['input'])){
+	if($_POST['input']==$_POST['answer']){
+		echo "PASSED";
+	}else{
+		echo "FAILED";
+	}
+}
+
+$arr = array(
+array(1,2,3,4),
+array(11,12,13,14),
+array(21,22,23,24)
+);
+
+$random = rand(0,2);
+
+$selectedArr= $arr[$random];
+
+
+
+?>
+
 <html>
 <head>
 <style>
@@ -45,11 +69,23 @@ input[type="text"]:focus {
 <head>
 <body>
 <div id="center1">
-1,2,3
+<?php
+for($i=0;$i<count($selectedArr)-1;$i++){
+	if($i!=0){
+		echo ", " . $selectedArr[$i];
+	}else{
+		echo $selectedArr[$i];
+	}
+	
+}
+
+?>
 <div>
 <div id="center2">
-<form action="isNextNum.php">
+<form action="" method="post">
   <input type="text" name="input"><br>
+  <input type="hidden" name="answer" value=<?php 
+echo '"'.$_POST['answer']=$selectedArr[count($selectedArr)-1].'"';?>>
   <input type="submit" value="Submit">
 </form>
 <div>
