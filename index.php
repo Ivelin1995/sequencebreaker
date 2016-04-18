@@ -34,8 +34,11 @@ if(!empty($_POST['input'])){
 		        <p>You entered the wrong number in the sequence. Try again!</p>
 		      </div>";
 
-
+		
 		$_SESSION['points']-=2;
+		if($_SESSION['points'] < 0){
+			$_SESSION['points'] = 0;
+		}
 	}
 }
 
@@ -68,7 +71,7 @@ while($row = mysqli_fetch_array($result)){
 
 
 //choose random array. range should be modified to fit the number of sequences we have
-$random = rand(0,2);
+$random = rand(0,17);
 if(!$pass){
 	$random=$_POST['sequence'];
 }
